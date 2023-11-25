@@ -73,6 +73,7 @@ const NavItem = ({
                      src={organization.imageUrl}
                      fill
                      alt="org-img"
+                     className="rounded-md"
                      />
                 </div>
                 <span className="font-medium text-sm">{organization.name}</span>
