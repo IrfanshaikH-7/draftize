@@ -1,4 +1,5 @@
 import Navbar from "./_components/Navbar"
+import TopComponent from "./_components/TopComponent"
 
 const LandingLayout = ({
     children
@@ -7,7 +8,7 @@ const LandingLayout = ({
 }) => {
     return(
         <main className="h-full">
-            <Navbar />
+            <TopComponent />
             {children}
         </main>
     )
