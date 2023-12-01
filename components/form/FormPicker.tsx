@@ -2,8 +2,10 @@
 import { unsplash } from "@/lib/unsplash";
 import { cn } from "@/lib/utils";
 import { Loader, Loader2 } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { defaultImages } from "@/constants/images";
 
 interface FormPickerProps {
     id: string;
@@ -16,7 +18,7 @@ const FormPicker = ({
 ) => {
     const  {pending} = useFormStatus();
 
-    const [images, setImages] = useState<Array<Record<string, any>>>([])
+    const [images, setImages] = useState<Array<Record<string, any>>>(defaultImages)
     const [loading, setLoading] = useState(true)
     const [selectImageID, setSelectImageID] = useState(null)
 
@@ -36,7 +38,8 @@ const FormPicker = ({
                 }
             } catch (error) {
                 console.log(error);
-                setImages([])
+
+                setImages(defaultImages)
             } finally {
                 setLoading(false)
             }
@@ -68,7 +71,12 @@ const FormPicker = ({
                             setSelectImageID(image.id);
                         }}
                         >
-
+                            <Image 
+                            src={image.urls.thumb}
+                            fill
+                            alt="unsplash-img"
+                            className="object-cover rounded-sm"
+                            />
                         </div>
                     ))
                 }
