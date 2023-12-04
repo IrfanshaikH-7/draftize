@@ -1,11 +1,13 @@
 "use client"
 import { unsplash } from "@/lib/unsplash";
 import { cn } from "@/lib/utils";
-import { Loader, Loader2 } from "lucide-react";
+import { Check, Loader, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { defaultImages } from "@/constants/images";
+import Link from "next/link";
+import FromError from "./FromError";
 
 interface FormPickerProps {
     id: string;
@@ -71,16 +73,38 @@ const FormPicker = ({
                             setSelectImageID(image.id);
                         }}
                         >
+                            <input type="radio"
+                            id={id}
+                            name={id}
+                            checked={selectImageID === image.id}
+                            disabled={pending}
+                            className="hidden"
+                            value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
+                            />
                             <Image 
                             src={image.urls.thumb}
                             fill
                             alt="unsplash-img"
                             className="object-cover rounded-sm"
                             />
+                            {selectImageID === image.id && (
+                                <div className="absolute inset-y-0 h-full w-full bg-black/20 flex items-center justify-center">
+                                    <Check className="h-4 w-4 text-white"/>
+                                </div>
+                            )}
+                            <Link
+                            href={image.links.html}
+                            target="_blank"
+                            className="opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate hover:underline text-white p-1 bg-black/50"
+                            >
+                                {image.user.name}
+                            </Link>
                         </div>
                     ))
                 }
             </div>
+            <FromError id="image" errors={error} />
+
         </div>
     )
 }
