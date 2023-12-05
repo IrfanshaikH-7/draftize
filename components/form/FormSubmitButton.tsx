@@ -22,6 +22,7 @@ const FormSubmitButton = ({
       variant={variant}
       size='sm'
       className={className}
+      type="submit"
     >
       {children}
     </Button>
