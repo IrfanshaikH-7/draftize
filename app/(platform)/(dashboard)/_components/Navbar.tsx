@@ -22,9 +22,13 @@ const Navbar = () => {
           side='bottom'
           sideOffset={18}
         >
-          <Button variant='primary' size='sm' className='rounded-sm hidden md:block h-auto py-1.5 px-2' asChild>
+          
+          {/* <Button variant='primary' size='sm' className='rounded-sm  md:block h-auto py-1.5 px-2' asChild>
             Create
-          </Button>
+          </Button> */}
+          <div >
+            Create
+          </div>
         </FormPopover>
         <FormPopover
         >
@@ -33,7 +37,7 @@ const Navbar = () => {
           </Button>
         </FormPopover>
       </div>
-      <div className='ml-auto flex items-center gap-x-2'>
+      {/* <div className='ml-auto flex items-center gap-x-2'>
         <OrganizationSwitcher
           hidePersonal
           afterCreateOrganizationUrl='/organization/:id'
@@ -60,7 +64,7 @@ const Navbar = () => {
           }}
         />
 
-      </div>
+      </div> */}
     </nav>
   )
 }
